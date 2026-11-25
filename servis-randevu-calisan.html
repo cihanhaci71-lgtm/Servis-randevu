@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Servis Randevusu</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f8f4ef;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .phone {
+      width: 390px;
+      max-width: 100%;
+      background: #fdfbf8;
+      border-radius: 36px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      overflow: hidden;
+      border: 10px solid #1a1a1a;
+    }
+    .header {
+      text-align: center;
+      padding: 40px 24px 20px;
+    }
+    .icon { font-size: 42px; margin-bottom: 8px; }
+    h1 {
+      font-size: 32px;
+      color: #c9a96e;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    .subtitle {
+      color: #8a8175;
+      font-size: 15px;
+      margin-top: 10px;
+    }
+    .form {
+      padding: 10px 24px 30px;
+    }
+    .field {
+      background: white;
+      border-radius: 16px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .field-icon { font-size: 20px; color: #c9a96e; width: 24px; }
+    .field-content { flex: 1; }
+    .field label {
+      display: block;
+      font-size: 13px;
+      color: #8a8175;
+      margin-bottom: 2px;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      background: transparent;
+      color: #1a2a4a;
+      font-family: inherit;
+    }
+    .field textarea { min-height: 60px; resize: none; }
+    .submit-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #d4b483, #c9a96e);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      padding: 18px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+    }
+    .footer-note {
+      text-align: center;
+      color: #a89f94;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+    .success {
+      display: none;
+      text-align: center;
+      padding: 80px 30px;
+    }
+    .success.show { display: block; }
+    .form.hide { display: none; }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <div class="header">
+      <div class="icon">🚐</div>
+      <h1>Servis Randevusu</h1>
+      <p class="subtitle">Lütfen bilgilerinizi doldurun.</p>
+    </div>
+
+    <form class="form" id="randevuForm" action="https://formspree.io/f/xljbzdqj" method="POST">
+      <div class="field">
+        <div class="field-icon">👤</div>
+        <div class="field-content">
+          <label>Ad Soyad</label>
+          <input type="text" name="ad_soyad" required placeholder="Adınız ve soyadınız">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-icon">📞</div>
+        <div class="field-content">
+          <label>Telefon Numarası</label>
+          <input type="tel" name="telefon" required placeholder="05XX XXX XX XX">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-icon">📅</div>
+        <div class="field-content">
+          <label>Tarih</label>
+          <input type="date" name="tarih" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-icon">⏰</div>
+        <div class="field-content">
+          <label>Giriş Saati</label>
+          <input type="time" name="giris_saati" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-icon">⏰</div>
+        <div class="field-content">
+          <label>Çıkış Saati</label>
+          <input type="time" name="cikis_saati" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-icon">👥</div>
+        <div class="field-content">
+          <label>Kişi Sayısı</label>
+          <select name="kisi_sayisi" required>
+            <option value="">Seçin</option>
+            <option>1</option><option>2</option><option>3</option>
+            <option>4</option><option>5</option><option>6</option>
+            <option>7</option><option>8+</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-icon">📍</div>
+        <div class="field-content">
+          <label>Nereden Alınacak</label>
+          <input type="text" name="nereden" required placeholder="Alınacak adres">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-icon">📍</div>
+        <div class="field-content">
+          <label>Nereye Gidilecek</label>
+          <input type="text" name="nereye" required placeholder="Gidilecek yer">
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="field-icon">✏️</div>
+        <div class="field-content">
+          <label>Not (opsiyonel)</label>
+          <textarea name="not" placeholder="Özel notlarınız"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Randevu Oluştur</button>
+      <p class="footer-note">Güvenli, Konforlu, Zamanında.<br>Şoförlerimiz sizi zamanında karşılayacak.</p>
+    </form>
+
+    <div class="success" id="successMsg">
+      <div style="font-size: 60px; margin-bottom: 16px;">✅</div>
+      <h2 style="color: #1a2a4a; margin-bottom: 10px;">Randevunuz Alındı!</h2>
+      <p style="color: #8a8175;">En kısa sürede sizinle iletişime geçeceğiz.</p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('randevuForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Önce başarı mesajını göster
+      form.classList.add('hide');
+      document.querySelector('.header').style.display = 'none';
+      document.getElementById('successMsg').classList.add('show');
+
+      // Arka planda Formspree'ye gönder
+      const data = new FormData(form);
+      try {
+        await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+      } catch (error) {
+        console.log('Gönderim hatası:', error);
+      }
+    });
+  </script>
+</body>
+</html>
